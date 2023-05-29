@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+option go_package = "./ChatRPC";
+option java_multiple_files = true;
+//option java_package = "io.grpc.examples.helloworld";
+option java_outer_classname = "ChatRPC";
+
+package ChatRPC;
+
+service ChatManager {
+    rpc CreateAccount (CreateAccountRequest) returns (stream CreateAccountReply) {}
+    rpc LogInAccount (LogInAccountRequest) returns (stream LogInAccountReply) {}
+    rpc EnterChatRoom (EnterChatRoomRequest) returns (EnterChatRoomReply) {}
+    rpc LeaveChatRoom (LeaveChatRoomRequest) returns (LeaveChatRoomReply) {}
+    rpc GetListOfRoom (GetListOfRoomRequest) returns (GetListOfRoomReply) {}
+    rpc SendMessage (SendMessageRequest) returns (SendMessageReply) {}
+}
+
+message CreateAccountRequest {
+    string name = 1;
+    string passwd = 2;
+}
+
+message CreateAccountReply {
+    string message = 1;
+}
+
+message LogInAccountRequest {
+    string name = 1;
+    string passwd = 2;
+}
+
+message LogInAccountReply {
+    string message = 1;
+}
+
+message EnterChatRoomRequest {
+    string user_name = 1;
+    string room_name = 2;
+    string passwd = 3;
+}
+
+message EnterChatRoomReply {
+    string message = 1;
+}
+
+message LeaveChatRoomRequest {
+    string user_name = 1;
+}
+
+message LeaveChatRoomReply {
+    string message = 1;
+}
+
+message GetListOfRoomRequest {
+    string user_name = 1;
+}
+
+message GetListOfRoomReply {
+    string message = 1;
+}
+
+message SendMessageRequest {
+    string user_name = 1;
+    string room_name = 2;
+    string content = 3;
+    string timestamp = 4;
+}
+
+message SendMessageReply {
+    string message = 1;
+}
